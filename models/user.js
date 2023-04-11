@@ -22,6 +22,11 @@ const UserSchema = new mongoose.Schema({
       type: String,
       required: [true, 'Please provide password'],
       minlength: 6
+    },
+    phoneNumber: {
+      type: String,
+      required: [true, 'Please provide phone number'],
+      minlength: 1
     }
   });
 
