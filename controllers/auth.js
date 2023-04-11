@@ -7,7 +7,8 @@ const register = async (req, res, next) => {
         // the signed token with that users specific details are sent to the user.
         const registerUser = await UserModel.create(req.body);
         const token = registerUser.createJWT()
-        return res.status(200).json({ user: { id: registerUser._id, name: registerUser.name, email: registerUser.email, token} })
+        console.log('success')
+        return res.status(200).json({ user: { id: registerUser._id, name: registerUser.name, email: registerUser.email, phoneNumber: registerUser.phoneNumber, token} })
     } catch (error) {
         return next(error);
     }
