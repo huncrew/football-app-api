@@ -15,7 +15,9 @@ const Landing = () => {
             <span>Principles</span> app
           </h1>
           <p>
-            TESTING GIT OK  
+            Principles allow us to to avoid making the same mistakes twice, by compiling our life lessons,
+            and being able to review them when we meet situations and need to make decisions.
+            This app tracks your principles.  
           </p>
           <Link to='/register' className='btn btn-hero'>
             Login/Register

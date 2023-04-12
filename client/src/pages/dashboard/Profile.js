@@ -13,6 +13,28 @@ const Profile = () => {
     email: user?.email || ''
   });
 
+  const [selects, setSelects] = useState({
+    name: userData.name ? true : false,
+    email: userData.email ? true : false,
+
+  })
+
+  const handleFocus = (e) => {
+    const title = e.target.name
+    const value = !selects[title]
+    if(!userData[title]){
+      setSelects({ ...selects, [title]: value });
+    }
+  };
+
+  const handleBlur = (e) => {
+    const title = e.target.name
+    const value = !selects[title]
+    if(!userData[title]){
+      setSelects({ ...selects, [title]: value });
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const { name, email } = userData;
@@ -39,12 +61,18 @@ const Profile = () => {
             name='name'
             value={userData.name}
             handleChange={handleChange}
+            handleFocus={handleFocus}
+            handleBlur={handleBlur}
+            selected={selects.name}
           />
           <FormRow
             type='email'
             name='email'
             value={userData.email}
             handleChange={handleChange}
+            handleFocus={handleFocus}
+            handleBlur={handleBlur}
+            selected={selects.email}
           />
           <button type='submit' className='btn btn-block' disabled={isLoading}>
             {isLoading ? 'Please Wait...' : 'save changes'}
