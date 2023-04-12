@@ -3,8 +3,11 @@ import { JobsContainer, SearchContainer } from '../../components';
 const AllTeams = () => {
   return (
     <>
-      <SearchContainer />
+      {/* <SearchContainer /> */}
       <JobsContainer />
+
+  
+
     </>
   );
 };

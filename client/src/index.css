@@ -9,6 +9,10 @@
 
 html {
   font-size: 100%;
+  
+  /* POTENTIAL DARK MORE IN THE FITURE
+  filter: invert(1) hue-rotate(180deg) 
+  */
 } /*16px*/
 
 :root {
