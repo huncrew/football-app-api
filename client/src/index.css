@@ -233,23 +233,46 @@ ul {
   margin-bottom: 0.5rem;
   text-transform: capitalize;
   letter-spacing: var(--letterSpacing);
+  position: absolute;
+  transform: translateX(5px);
+  transition: all 0.5s;
+  cursor: text;
+}
+.form-label-selected{
+  transform: translateX(5px) translateY(-1.5rem);
+
 }
 .form-input,
 .form-textarea,
 .form-select {
   width: 100%;
   padding: 0.375rem 0.75rem;
-  border-radius: var(--borderRadius);
-  background: var(--backgroundColor);
-  border: 1px solid var(--grey-200);
+  /* border-radius: var(--borderRadius); */
+  /* background: var(--backgroundColor); */
+  /* border: 1px solid var(--grey-200); */
 }
 .form-input,
 .form-select,
 .btn-block {
   height: 35px;
 }
+/* 
+-> position relative to house the absolutely-positioned label
+-> margin-bottom set to important to override some unknown UI library, which gives
+   a margin-bottom: 0; the margin is needed to create space for the labels which will rise
+*/
 .form-row {
-  margin-bottom: 1rem;
+  margin-bottom: 3.5rem !important;
+  position:relative
+}
+
+.form-input{
+  border: none;
+  border-bottom:1px solid black;
+}
+.form-input:focus-visible{
+  outline-offset: none;
+  outline: none;
 }
 
 .form-textarea {

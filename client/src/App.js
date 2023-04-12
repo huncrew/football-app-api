@@ -4,9 +4,12 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {
   Profile,
-  AddJob,
-  AllJobs,
+  MyTeam,
+  AllTeams,
   SharedLayout,
+  Settings,
+  UpcomingMatches,
+  BestBets
 } from './pages/dashboard';
 function App() {
   return (
@@ -20,10 +23,15 @@ function App() {
             </ProtectedRoute>
           }
         >
-          <Route index element={<AllJobs />} />
-          <Route path='all-principles' element={<AllJobs />} />
-          <Route path='add-principle' element={<AddJob />} />
+          <Route index element={<AllTeams />} />
+          <Route path='all-teams' element={<AllTeams />} />
+          <Route path='my-team' element={<MyTeam />} />
           <Route path='profile' element={<Profile />} />
+
+          <Route path='upcoming-matches' element={<UpcomingMatches />} />
+          <Route path='best-bets' element={<BestBets />} />
+          <Route path='settings' element={<Settings />} />
+
         </Route>
         <Route path='landing' element={<Landing />} />
         <Route path='register' element={<Register />} />

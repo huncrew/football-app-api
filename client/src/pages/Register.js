@@ -10,33 +10,57 @@ const initialState = {
   name: '',
   email: '',
   password: '',
+  phoneNumber: '',
   isMember: true,
 };
 
 function Register() {
   const [values, setValues] = useState(initialState);
   const { user, isLoading } = useSelector((store) => store.user);
+  const [selects, setSelects] = useState({
+    name: false,
+    email: false,
+    password: false,
+    phoneNumber: false,
+  })
+
+  const handleFocus = (e) => {
+    const title = e.target.name == 'Telephone Number' ? 'phoneNumber' : e.target.name
+    const value = !selects[title]
+    if(!values[title]){
+      setSelects({ ...selects, [title]: value });
+    }
+  };
+
+  const handleBlur = (e) => {
+    const title = e.target.name == 'Telephone Number' ? 'phoneNumber' : e.target.name
+    const value = !selects[title]
+    if(!values[title]){
+      setSelects({ ...selects, [title]: value });
+    }
+  };
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleChange = (e) => {
-    const name = e.target.name;
+    const name = e.target.name == 'Telephone Number' ? 'phoneNumber' : e.target.name
     const value = e.target.value;
 
     setValues({ ...values, [name]: value });
   };
   const onSubmit = (e) => {
     e.preventDefault();
-    const { name, email, password, isMember } = values;
-    if (!email || !password || (!isMember && !name)) {
+    const { name, email, password, phoneNumber, isMember } = values;
+    if (!email || !password || !phoneNumber || (!isMember && !name)) {
       toast.error('Please fill out all fields');
       return;
     }
     if (isMember) {
-      dispatch(loginUser({ email: email, password: password }));
+      dispatch(loginUser({ email: email, password: password, phoneNumber: phoneNumber }));
       return;
     }
-    dispatch(registerUser({ name, email, password }));
+    dispatch(registerUser({ name, email, password, phoneNumber }));
   };
 
   const toggleMember = () => {
@@ -61,6 +85,10 @@ function Register() {
             name='name'
             value={values.name}
             handleChange={handleChange}
+            handleFocus={handleFocus}
+            handleBlur={handleBlur}
+            selected={selects.name}
+
           />
         )}
         {/* email field */}
@@ -69,6 +97,9 @@ function Register() {
           name='email'
           value={values.email}
           handleChange={handleChange}
+          handleFocus={handleFocus}
+          handleBlur={handleBlur}
+          selected={selects.email}
         />
         {/* password field */}
         <FormRow
@@ -76,6 +107,30 @@ function Register() {
           name='password'
           value={values.password}
           handleChange={handleChange}
+          handleFocus={handleFocus}
+          handleBlur={handleBlur}
+          selected={selects.password}
+        />
+        {/* phone-number field */}
+        <FormRow
+          type='tel'
+          name='Telephone Number'
+          value={values.phoneNumber}
+          handleOnKeyDown={(event) => {
+            if (!/^[0-9+]+$/.test(event.key) 
+            && event.key !== 'Backspace' 
+            && event.key !== 'Enter' 
+            && event.key !== 'Tab' 
+            && event.key !== 'Delete'
+            && event.key !== 'ArrowLeft'
+            && event.key !== 'ArrowRight' ) {
+              event.preventDefault();
+            }
+          }}
+          handleChange={handleChange}
+          handleFocus={handleFocus}
+          handleBlur={handleBlur}
+          selected={selects.phoneNumber}
         />
         <button type='submit' className='btn btn-block' disabled={isLoading}>
           {isLoading ? 'loading...' : 'submit'}

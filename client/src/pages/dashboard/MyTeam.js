@@ -130,7 +130,7 @@
 
 
 import { FormRow, FormRowSelect } from '../../components';
-import Wrapper from '../../assets/wrappers/DashboardFormPage';
+import Wrapper from '../../assets/wrappers/Job';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import {
@@ -140,7 +140,7 @@ import {
   editJob,
 } from '../../features/job/jobSlice';
 import { useEffect } from 'react';
-const AddJob = () => {
+const MyTeam = () => {
   const {
     isLoading,
     area,
@@ -181,45 +181,57 @@ const AddJob = () => {
   };
 
   return (
-    <Wrapper>
-      <form className='form'>
-        <h3>{isEditing ? 'edit principle' : 'add principle'}</h3>
+    <>
+        <Wrapper>
+               {/* temporary inline styling on this section */}
+               <h2 style={{textAlign: 'center'}}>Ongoing Match</h2>
+      <section className='form' style={{textAlign: 'center'}}>
+      <h3>team1 # - # team2</h3>
+        <hr style={{width: '50%'}}></hr>
         <div className='form-center'>
-          {/* position */}
-          <FormRow
-            type='text'
-            name='area'
-            value={area}
-            handleChange={handleJobInput}
-          />
-          {/* company */}
-          <FormRow
-            type='text'
-            name='text'
-            value={text}
-            handleChange={handleJobInput}
-          />
-          {/* jobLocation */}
+        <h4>x% - POSSESSION - x%</h4>
+        <h4>x% - SHOTS - x%</h4>
+        <h4>x% - SHOTS ON GOAL - x%</h4>
+        <h4>x% - YELLOW CARDS - x%</h4>
+        <h4>x% - RED CARDS - x%</h4>
+          {/* temporary inline styling on this hr */}
+          <hr></hr>
+          <h3 >Goals</h3>
+          <hr style={{width: '50%'}}></hr>
+          <h4>Team | player | min'</h4>
+          <h4>Team | player | min'</h4>
+          <h4>Team | player | min'</h4>
+          <hr></hr>
+          <h3>Time</h3>
+          <hr style={{width: '50%'}}></hr>
+          <h4>current minute: X</h4>
+          <h4>extra time: X</h4>
+          
+
           <div className='btn-container'>
-            <button
-              type='button'
-              className='btn btn-block clear-btn'
-              onClick={() => dispatch(clearValues())}
-            >
-              clear
-            </button>
-            <button
-              type='submit'
-              className='btn btn-block submit-btn'
-              onClick={handleSubmit}
-              disabled={isLoading}
-            >
-              submit
-            </button>
+         
           </div>
         </div>
-      </form>
+      </section>
     </Wrapper>
+    <hr></hr>
+    <Wrapper>
+      <section className='form'>
+        <h3>Team Stats</h3>
+        <div className='form-center'>
+        <h4>Lineup...?</h4>
+        <h4>Group scores...?</h4>
+        <h4>Total goals...?</h4>
+
+
+          <div className='btn-container'>
+         
+          </div>
+        </div>
+      </section>
+      
+    </Wrapper>
+    </>
   );
 };
-export default AddJob;
+export default MyTeam;

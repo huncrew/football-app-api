@@ -1,11 +1,10 @@
 import { JobsContainer, SearchContainer } from '../../components';
 
-const AllJobs = () => {
+const UpcomingMatches = () => {
   return (
     <>
-      <SearchContainer />
-      <JobsContainer />
+      <h2>UPCOMING MATCHES...</h2>
     </>
   );
 };
-export default AllJobs;
+export default UpcomingMatches;
