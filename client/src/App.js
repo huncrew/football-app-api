@@ -17,7 +17,6 @@ import { useSelector } from 'react-redux';
 function App() {
 
   let lightMode = useSelector((store) => store.lightMode)
-
   const htmlElement = document.getElementsByTagName('html')
 
   useEffect(()=>{
@@ -31,8 +30,6 @@ function App() {
       htmlElement[0].style.filter = !lightMode ? 'invert(0.93) hue-rotate(200deg) saturate(80%) brightness(90%)' : 'none'
     
   },[lightMode])
-
-
 
   return (
     <BrowserRouter>

@@ -8,13 +8,17 @@ const Wrapper = styled.article`
   box-shadow: var(--shadow-2);
 
   header {
-    padding: 1rem 1.5rem;
+    padding: 1rem 0.5rem;
     border-bottom: 1px solid var(--grey-100);
     display: grid;
     grid-template-columns: auto 1fr;
     align-items: center;
     h5 {
       letter-spacing: 0;
+    }
+    .team-title{
+      margin: 0 1rem;
+      text-align: center
     }
   }
   .main-icon {
@@ -28,9 +32,13 @@ const Wrapper = styled.article`
     font-weight: 700;
     text-transform: uppercase;
     color: var(--white);
-    margin-right: 2rem;
+  
   }
   .info {
+    padding: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     h5 {
       margin-bottom: 0.25rem;
     }
@@ -81,15 +89,17 @@ const Wrapper = styled.article`
     margin-top: 0.5rem;
   }
   footer {
-    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    margin: 1rem 0;
   }
-  .edit-btn,
+  .stats-btn,
   .delete-btn {
     letter-spacing: var(--letterSpacing);
     cursor: pointer;
     height: 30px;
   }
-  .edit-btn {
+  .stats-btn {
     color: var(--green-dark);
     background: var(--green-light);
     margin-right: 0.5rem;
@@ -101,6 +111,12 @@ const Wrapper = styled.article`
   &:hover .actions {
     visibility: visible;
   }
+  .stats{
+    padding: 1rem;
+    border-bottom: 1px solid var(--grey-100);
+  }
+  
+
 `;
 
 export default Wrapper;

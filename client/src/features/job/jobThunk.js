@@ -2,9 +2,9 @@ import { showLoading, hideLoading, getAllJobs } from '../allJobs/allJobsSlice';
 import customFetch, { checkForUnauthorizedResponse } from '../../utils/axios';
 import { clearValues } from './jobSlice';
 
-export const createJobThunk = async (job, thunkAPI) => {
+export const createJobThunk = async (team, thunkAPI) => {
   try {
-    const resp = await customFetch.post('/principles', job);
+    const resp = await customFetch.post('/football/teams', team);
     thunkAPI.dispatch(clearValues());
     return resp.data.msg;
   } catch (error) {
