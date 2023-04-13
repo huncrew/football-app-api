@@ -5,7 +5,7 @@ const app = express();
 const path = require('path');
 const bodyParser = require('body-parser')
 const jsonParser = bodyParser.json();
-const principleRoutes = require('./routes/principles');
+const principleRoutes = require('./routes/teams');
 const authRoutes = require('./routes/auth');
 const addToReq = require('./controllers/test');
 const databaseConnect = require('./db/connect');
@@ -24,7 +24,7 @@ app.use(addToReq);
 
 // routes
 app.use('/api/v1/auth', authRoutes);
-app.use('/api/v1/principles', principleRoutes);
+app.use('/api/v1/football', principleRoutes);
 
 app.get('/send', sendEmail);
 

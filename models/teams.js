@@ -1,16 +1,11 @@
 const mongoose = require('mongoose');
 
-const PrinciplesSchema = new mongoose.Schema({
-    area: {
+const TeamSchema = new mongoose.Schema({
+    team: {
         type: String,
         required: true,
         trim: true
     },
-     text: {
-        type: String,
-        required: true,
-        trim: true
-     },
      user: {
         type: mongoose.Types.ObjectId,
         ref: 'User',
@@ -18,4 +13,4 @@ const PrinciplesSchema = new mongoose.Schema({
       },
 })
 
-module.exports = mongoose.model('Principles', PrinciplesSchema);
+module.exports = mongoose.model('Teams', TeamSchema);
