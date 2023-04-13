@@ -7,21 +7,30 @@ import moment from 'moment';
 import { deleteJob, setEditJob } from '../features/job/jobSlice';
 import { useRef } from 'react';
 import { toast } from 'react-toastify';
+import { useState } from 'react';
+import Stat from './Stat';
+import { createJob } from '../features/job/jobSlice';
 const Job = ({
   _id,
   area,
-  text
+  team
 }) => {
+
+  const [statsExpand, setStatsExpand] = useState(false)
   const dispatch = useDispatch();
 
   const onSubmit = (e) =>{
     e.preventDefault()
-    toast.success(`${text} set as 'My Team'`)
+    toast.success(`${team} set as 'My Team'`)
     //the below console log simulates a function that uses the team name (possibly for sending the data to the BE)
-    console.log(text)
+    dispatch(createJob({ team }));
     
   }
+  const handleClick = e =>{
+    setStatsExpand(prevState => !prevState)
+  }
   
+
   return (
     <Wrapper>
       <header>
@@ -29,10 +38,22 @@ const Job = ({
         {/* THIS IS AN ICON SITTING BESIDE THE NAME, UPON HAVING THE TEAMS, EACH FLAG COULD BE DISPLAYED HERE */}
         <div className='main-icon'>{area}</div>
         <div className='info'>
-          <h5 className='team-title'>{text}</h5>
+          <h5 className='team-title'>{team}</h5>
+          <button className= 'btn stats-btn'
+            onClick={handleClick}
+          >
+            stats
+          </button>
         </div>
       </header>
-      <div className='content'>
+      {/* bellow section will be converted to a mapped element once I can work with the data and see how should I structure the data arrays/objects for the map */}
+      {statsExpand && 
+          <section className='stats'>
+          <Stat statTitle='Stat 1' statContent='Stat Content 1' />
+          <Stat statTitle='Stat 2' statContent='Stat Content 2' />
+          <Stat statTitle='Stat 3' statContent='Stat Content 3' />
+          <Stat statTitle='Stat 4' statContent='Stat Content 4' />
+        </section>}
         {/* <div className='content-center'>
           <JobInfo icon={<FaLocationArrow />} text={jobLocation} />
           <JobInfo icon={<FaCalendarAlt />} text={date} />
@@ -63,6 +84,7 @@ const Job = ({
               delete
             </button>
           </div> */}
+          
           <form onSubmit={onSubmit}>
             <button
               type='submit'
@@ -71,7 +93,7 @@ const Job = ({
             </button>
           </form>
         </footer>
-      </div>
+      
     </Wrapper>
   );
 };

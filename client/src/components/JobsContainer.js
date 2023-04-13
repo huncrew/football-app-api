@@ -44,6 +44,8 @@ const JobsContainer = () => {
     'Fullham'
   ]
 
+  const staticTeamsArrayModified = staticTeamsArray.map( e =>  ({ "team": `${e}`}))
+
   if (isLoading) {
     return <Loading />;
   }
@@ -65,7 +67,7 @@ const JobsContainer = () => {
         {staticTeamsArray.map((team) => {
           return <Job key={team} 
           // {...job}
-          text={team} 
+          team={team} 
           />;
         })}
       </div>
