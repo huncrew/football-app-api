@@ -11,7 +11,29 @@ import {
   UpcomingMatches,
   BestBets
 } from './pages/dashboard';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+
 function App() {
+
+  let lightMode = useSelector((store) => store.lightMode)
+
+  const htmlElement = document.getElementsByTagName('html')
+
+  useEffect(()=>{
+    if(JSON.parse(localStorage.getItem("UniqueIDlightMode")) == null){
+      localStorage.setItem("UniqueIDlightMode", JSON.stringify(false))
+    }
+  },[])
+
+  useEffect(()=>{
+
+      htmlElement[0].style.filter = !lightMode ? 'invert(0.93) hue-rotate(200deg) saturate(80%) brightness(90%)' : 'none'
+    
+  },[lightMode])
+
+
+
   return (
     <BrowserRouter>
       <Routes>

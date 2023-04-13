@@ -9,6 +9,8 @@
 
 html {
   font-size: 100%;
+  
+  transition: filter 0.3s;
 } /*16px*/
 
 :root {
@@ -354,4 +356,38 @@ ul {
 
 .Toastify__toast {
   text-transform: capitalize;
+}
+
+
+
+.lightMode-btn{
+  width: 2rem;
+  height: 2rem;
+  background: transparent;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  border-color: hsl(0, 0%, 20%);
+}
+
+.lightMode-btn .lightMode-btn-img-container{
+  width: 100%;
+  height: 100%;
+  transition: transform 0.3s;
+}
+
+.lightMode-btn .lightMode-btn-img-container div{
+  width: 100%;
+  height: 100%;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  
+}
+
+.lightMode-btn .lightMode-btn-img-container div:first-of-type{
+   background-image: url('https://cdn.pixabay.com/photo/2016/10/05/16/43/penis-1717074_960_720.png')
+}
+
+.lightMode-btn .lightMode-btn-img-container div:last-of-type{
+   background-image: url('https://cdn.pixabay.com/photo/2020/05/01/12/36/cucumber-5116837_960_720.png')
 }

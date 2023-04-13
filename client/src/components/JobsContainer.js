@@ -26,26 +26,47 @@ const JobsContainer = () => {
     dispatch(getAllJobs());
   }, [user, search, searchStatus, searchType, sort]);
 
+  // the original array is taken from the jobs array provided above;
+  // it is set up to somehow work with the BE in the features folder (where there are further individual folders for each item, each with a slice/thunk in it)... gotta figure out
+  const staticTeamsArray = [
+    'Manchester United',
+    'Manchester City',
+    'Liverpool',
+    'Arsenal',
+    'Chelsea',
+    'Newcastle United',
+    'Everton',
+    'Brentford',
+    'West Ham',
+    'Leeds United',
+    'Aston Villa',
+    'Leicester City',
+    'Fullham'
+  ]
+
   if (isLoading) {
     return <Loading />;
   }
 
-  if (jobs.length === 0 || jobs.length === undefined) {
-    return (
-      <Wrapper>
-        <h2>You haven't added any principles yet, click 'Add Principles' to do it!</h2>
-      </Wrapper>
-    );
-  }
-
+  // if (jobs.length === 0 || jobs.length === undefined) {
+  //   return (
+  //     <Wrapper>
+  //       <h2>You haven't added any principles yet, click 'Add Principles' to do it!</h2>
+  //     </Wrapper>
+  //   );
+  // }
+  
   return (
     <Wrapper> 
-      <h5>
+      {/* <h5>
         {totalJobs} principle{jobs.length > 1 && 's'} found
-      </h5>
+      </h5> */}
       <div className='jobs'>
-        {jobs.map((job) => {
-          return <Job key={job._id} {...job} />;
+        {staticTeamsArray.map((team) => {
+          return <Job key={team} 
+          // {...job}
+          text={team} 
+          />;
         })}
       </div>
       {numOfPages > 1 && <PageBtnContainer />}
