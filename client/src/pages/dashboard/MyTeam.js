@@ -131,6 +131,7 @@
 
 import { FormRow, FormRowSelect } from '../../components';
 import Wrapper from '../../assets/wrappers/Job';
+import OngoingMatch from '../../components/OngoingMatch';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import {
@@ -185,7 +186,8 @@ const MyTeam = () => {
         <Wrapper>
                {/* temporary inline styling on this section */}
                <h2 style={{textAlign: 'center'}}>Ongoing Match</h2>
-      <section className='form' style={{textAlign: 'center'}}>
+               <OngoingMatch team1='team1' score='2:1' team2='team2'/>
+      {/* <section className='form' style={{textAlign: 'center'}}>
       <h3>team1 # - # team2</h3>
         <hr style={{width: '50%'}}></hr>
         <div className='form-center'>
@@ -194,7 +196,7 @@ const MyTeam = () => {
         <h4>x% - SHOTS ON GOAL - x%</h4>
         <h4>x% - YELLOW CARDS - x%</h4>
         <h4>x% - RED CARDS - x%</h4>
-          {/* temporary inline styling on this hr */}
+
           <hr></hr>
           <h3 >Goals</h3>
           <hr style={{width: '50%'}}></hr>
@@ -205,14 +207,9 @@ const MyTeam = () => {
           <h3>Time</h3>
           <hr style={{width: '50%'}}></hr>
           <h4>current minute: X</h4>
-          <h4>extra time: X</h4>
-          
-
-          <div className='btn-container'>
-         
-          </div>
+          <h4>extra time: X</h4>         
         </div>
-      </section>
+      </section> */}
     </Wrapper>
     <hr></hr>
     <Wrapper>
