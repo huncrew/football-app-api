@@ -7,7 +7,6 @@ const bodyParser = require('body-parser')
 const jsonParser = bodyParser.json();
 const principleRoutes = require('./routes/teams');
 const authRoutes = require('./routes/auth');
-const addToReq = require('./controllers/test');
 const databaseConnect = require('./db/connect');
 const pageNotFound = require('./middleware/not_found');
 const errorHandlingMiddleware = require('./middleware/error_handling');
@@ -18,9 +17,6 @@ const sendEmail = require('./controllers/email');
 app.use(express.static(path.resolve(__dirname, './client/build')));
 app.use(express.urlencoded({ extended: false }));
 app.use(jsonParser);
-
-//testing middleware
-app.use(addToReq);
 
 // routes
 app.use('/api/v1/auth', authRoutes);
