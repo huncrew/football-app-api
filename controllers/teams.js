@@ -20,7 +20,7 @@ const getUsersTeam = async (req, res, next) => {
           user: req.user.userId,
         };
         const team = await Teams.find(queryObject);
-        req.body.team = 'Arsenal';
+        req.body.team = team[0].team;
         next()
     } catch (error) {
         console.log('getUsersError', error);
