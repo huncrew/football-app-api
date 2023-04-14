@@ -141,6 +141,8 @@ import {
   editJob,
 } from '../../features/job/jobSlice';
 import { useEffect } from 'react';
+
+import { getMyTeam } from '../../features/myTeam/myTeamSlice';
 const MyTeam = () => {
   const {
     isLoading,
@@ -156,8 +158,23 @@ const MyTeam = () => {
   } = useSelector((store) => store.job);
   const { user } = useSelector((store) => store.user);
   const dispatch = useDispatch();
+
+
+  const myTeam = useSelector((store) => store.myTeam)
+
+  useEffect(() => {
+    dispatch(getMyTeam());
+  }, [dispatch]);
+
+  useEffect(()=>{
+    console.log(myTeam)
+  },[])
+
   const handleSubmit = (e) => {
     e.preventDefault();
+
+
+
 
     if (!area || !text) {
       toast.error('Please fill out all fields');
@@ -179,13 +196,17 @@ const MyTeam = () => {
     const name = e.target.name;
     const value = e.target.value;
     dispatch(handleChange({ name, value }));
+    dispatch(createJob({ name, value }));
   };
 
   return (
     <>
+    <h1>{myTeam.team}</h1>
         <Wrapper>
                {/* temporary inline styling on this section */}
+               
                <h2 style={{textAlign: 'center'}}>Ongoing Match</h2>
+               <p></p>
                <OngoingMatch team1='team1' score='2:1' team2='team2'/>
       {/* <section className='form' style={{textAlign: 'center'}}>
       <h3>team1 # - # team2</h3>

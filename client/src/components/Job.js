@@ -4,30 +4,39 @@ import Wrapper from '../assets/wrappers/Job';
 import { useDispatch } from 'react-redux';
 import JobInfo from './JobInfo';
 import moment from 'moment';
-import { deleteJob, setEditJob } from '../features/job/jobSlice';
+import { createJob, deleteJob, setEditJob } from '../features/job/jobSlice';
+
+import { setTeam } from '../features/myTeam/myTeamSlice';
+
 import { useRef } from 'react';
 import { toast } from 'react-toastify';
 import { useState } from 'react';
 import Stat from './Stat';
-import { createJob } from '../features/job/jobSlice';
+import { handleChange } from '../features/job/jobSlice';
+
+import { useSelector } from 'react-redux';
+
 const Job = ({
   _id,
   area,
   team
 }) => {
 
+  let jobState = useSelector((state) => state.myTeam)
   const [statsExpand, setStatsExpand] = useState(false)
   const dispatch = useDispatch();
 
   const onSubmit = (e) =>{
     e.preventDefault()
-    toast.success(`${team} set as 'My Team'`)
-    //the below console log simulates a function that uses the team name (possibly for sending the data to the BE)
-    dispatch(createJob({ team }));
-    
+    // toast.success(`${team} set as 'My Team'`)
+
+    // dispatch(handleChange(team));
+    dispatch(setTeam({team: team.toLowerCase()}));
+ 
   }
   const handleClick = e =>{
     setStatsExpand(prevState => !prevState)
+    console.log(jobState)
   }
   
 

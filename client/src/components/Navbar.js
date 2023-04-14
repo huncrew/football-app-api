@@ -6,10 +6,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toggleSidebar, clearStore } from '../features/user/userSlice';
 import { changeLightMode } from '../features/lightMode/lightModeSlice';
 
+import { getMyTeam } from '../features/myTeam/myTeamSlice';
 
 const Navbar = () => {
   const [showLogout, setShowLogout] = useState(false);
   const { user } = useSelector((store) => store.user);
+
+  const team = useSelector( (store) => store.job)
+  const idk = useSelector( (store) => store.allJobs)
+  const myTeam = useSelector( (store) => store.myTeam)
   const dispatch = useDispatch();
 
   const lightMode = useSelector((store) => store.lightMode)
@@ -19,7 +24,11 @@ const Navbar = () => {
     dispatch(toggleSidebar());
   };
   useEffect(()=>{
-    console.log(lightMode)
+    // console.log( "job:\n", team)
+    // console.log( "allJobs:\n", idk)
+    // console.log( "user:\n", user)
+    // console.log('myTeam:\n', myTeam)
+    dispatch(getMyTeam())
   },[])
 
   const handleClick = (e) =>{
@@ -29,6 +38,9 @@ const Navbar = () => {
    // this way, it changes from the very first click
     localStorage.setItem("UniqueIDlightMode", JSON.stringify(!lightMode))
   }
+
+
+  
 
   return (
     <Wrapper>
