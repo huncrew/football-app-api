@@ -29,19 +29,19 @@ const JobsContainer = () => {
   // the original array is taken from the jobs array provided above;
   // it is set up to somehow work with the BE in the features folder (where there are further individual folders for each item, each with a slice/thunk in it)... gotta figure out
   const staticTeamsArray = [
-    'Manchester United',
-    'Manchester City',
-    'Liverpool',
-    'Arsenal',
+    'manchester united',
+    'manchester city',
+    'liverpool',
+    'arsenal',
     'Chelsea',
-    'Newcastle United',
-    'Everton',
-    'Brentford',
-    'West Ham',
-    'Leeds United',
+    'newcastle united',
+    'everton',
+    'brentford',
+    'west Ham',
+    'leeds united',
     'Aston Villa',
     'Leicester City',
-    'Fullham'
+    'fullham'
   ]
 
   const staticTeamsArrayModified = staticTeamsArray.map( e =>  ({ "team": `${e}`}))

@@ -5,8 +5,8 @@ import { clearValues } from './jobSlice';
 export const createJobThunk = async (team, thunkAPI) => {
   try {
     const resp = await customFetch.post('/football/team', team);
-    thunkAPI.dispatch(clearValues());
-    return resp.data.msg;
+    // thunkAPI.dispatch(clearValues());
+    return resp.data;
   } catch (error) {
     return checkForUnauthorizedResponse(error, thunkAPI);
   }

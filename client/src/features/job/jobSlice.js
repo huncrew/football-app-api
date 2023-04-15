@@ -6,8 +6,10 @@ import {
   getUserFromLocalStorage,
   removeUserFromLocalStorage,
 } from '../../utils/localStorage';
+
 const initialState = {
   isLoading: false,
+  team: '',
   position: '',
   company: '',
   jobLocation: '',
@@ -19,7 +21,7 @@ const initialState = {
   editJobId: '',
   user: getUserFromLocalStorage(),
 };
-
+// export const createJob = createAsyncThunk('job/createJob', createJobThunk); = previous code
 export const createJob = createAsyncThunk('job/createJob', createJobThunk);
 
 export const deleteJob = createAsyncThunk('job/deleteJob', deleteJobThunk);
@@ -32,6 +34,7 @@ const jobSlice = createSlice({
   reducers: {
     handleChange: (state, { payload: { name, value } }) => {
       state[name] = value;
+      console.log(name, value)
     },
     clearValues: () => {
       return {
@@ -47,9 +50,11 @@ const jobSlice = createSlice({
     [createJob.pending]: (state) => {
       state.isLoading = true;
     },
-    [createJob.fulfilled]: (state) => {
+    [createJob.fulfilled]: (state, {payload}) => {
       state.isLoading = false;
-      toast.success('Principle Created');
+      state.team = payload.team.team
+      toast.success(`THIS IS THE CREATE JOB '`);
+      console.dir( payload.team )
     },
     [createJob.rejected]: (state, { payload }) => {
       state.isLoading = false;
