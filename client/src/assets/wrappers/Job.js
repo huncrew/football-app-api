@@ -1,11 +1,16 @@
 import styled from 'styled-components';
 
 const Wrapper = styled.article`
-  background: var(--white);
+  background: linear-gradient(90deg, var(--primary-100)45%, var(--primary-300) 55%);
   border-radius: var(--borderRadius);
   display: grid;
   grid-template-rows: 1fr auto;
   box-shadow: var(--shadow-2);
+
+  h2{
+    text-align: center;
+    margin: 1rem;
+  }
 
   header {
     padding: 1rem 0.5rem;

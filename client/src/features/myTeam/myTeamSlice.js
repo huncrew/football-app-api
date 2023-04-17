@@ -12,13 +12,15 @@ import { myTeamThunk, setTeamThunk } from './myTeamThunk';
 
 const initialState = {
   isLoading: true,
-  jobs: [],
-  totalJobs: 0,
-  numOfPages: 1,
-  page: 1,
-  stats: {},
-  monthlyApplications: [],
-  team: ''
+  // jobs: [],
+  // totalJobs: 0,
+  // numOfPages: 1,
+  // page: 1,
+  // stats: {},
+  // monthlyApplications: [],
+  team: '',
+  logo: '',
+  players:''
 //   ...initialFiltersState,
 };
 
@@ -60,8 +62,11 @@ const myTeamSlice = createSlice({
         // state.numOfPages = payload.numOfPages;
         // state.totalJobs = payload.totalJobs;
         state.team = payload.team;
+        state.logo = payload.logo
+        state.players = payload.players
         console.log('TEAM DATA FETCHED ON THIS MESSAGE'); // Log the payload to the console
         console.log(payload.team)
+        console.dir(payload)
       },
     [getMyTeam.rejected]: (state, { payload }) => {
       state.isLoading = false;
@@ -75,7 +80,7 @@ const myTeamSlice = createSlice({
       state.isLoading = false;
       state.team = payload.team.team
       toast.success(`${payload.team.team} Is Now Set As Your Team`);
-      console.dir( payload.team )
+      console.dir( payload )
     },
     [setTeam.rejected]: (state, { payload }) => {
       state.isLoading = false;
