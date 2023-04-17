@@ -2,30 +2,31 @@
 import TeamStatsRow from './TeamStatsRow';
 
 import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
 
 
 const TeamStats = ({team1Stat, statTitle, team2Stat}) => {
 
     const rawTeamStats = useSelector(store => store.myTeam)
-
-    const playersArr = rawTeamStats.players
-
-    let idkArr =[];
-
-    console.log(rawTeamStats.players[0])
-
     
+    const [ players, setPlayers ] = useState([])
 
-    setTimeout(()=>{
-        for (let key in rawTeamStats.players[0]){
-            idkArr.push(rawTeamStats[key])
+    useEffect(()=>{
+        if(!rawTeamStats.isLoading){
+            setPlayers(rawTeamStats.players.map( player => ({
+                statTitle: player.name,
+                statInfo: player.position
+            })
+            ))
+            console.log(players)
         }
-        console.log(idkArr)
-    },[5000])
-    // const playersStats = playersArr.map(element => ({statTitle: element.name}))
+
+    },[rawTeamStats])
+
+
 
     const teamStats= {
-        
+
     }
     return (
           <section>
@@ -33,11 +34,14 @@ const TeamStats = ({team1Stat, statTitle, team2Stat}) => {
               <h5>{statTitle}</h5>
               <h4>{team2Stat}</h4> */}
 
-              <TeamStatsRow 
+              {
+                !rawTeamStats.isLoading && 
+                <TeamStatsRow 
                     title='Full Roster'
-                    height='20rem'
-                    teamStats={[]}
+                    height='130rem'
+                    teamStats={players}
                 />
+              }
               <TeamStatsRow 
                     title='Stat2'
                     height='10rem'

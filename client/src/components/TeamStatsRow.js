@@ -18,6 +18,8 @@ const TeamStatsRow = ({ title, height, teamStats }) => {
 
     })
 
+    console.log(teamStats)
+
     return (
         <Wrapper 
             open={open}

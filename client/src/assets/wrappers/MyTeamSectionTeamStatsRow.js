@@ -69,8 +69,13 @@ hr{
        }
     }
     .stat-content-wrapper{
-
+        .team-stats{
+            display: flex;
+            justify-content: space-around;
+        }
     }
+
+
   
 
 `
