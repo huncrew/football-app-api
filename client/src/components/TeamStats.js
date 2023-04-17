@@ -38,7 +38,7 @@ const TeamStats = ({team1Stat, statTitle, team2Stat}) => {
                 !rawTeamStats.isLoading && 
                 <TeamStatsRow 
                     title='Full Roster'
-                    height='130rem'
+                    height='80.5rem'
                     teamStats={players}
                 />
               }

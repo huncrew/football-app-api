@@ -72,6 +72,11 @@ hr{
         .team-stats{
             display: flex;
             justify-content: space-around;
+            border: 1px solid black;
+            align-items: center;
+            h4{
+                margin:0;
+            }
         }
     }
 
