@@ -4,20 +4,31 @@ import TeamStatsRow from './TeamStatsRow';
 import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 
+import { RootState } from '../store';
+import { Player } from '../features/myTeam/myTeamSlice';
 
-const TeamStats = ({team1Stat, statTitle, team2Stat}) => {
 
-    const rawTeamStats = useSelector(store => store.myTeam)
+const TeamStats = () => {
+
+    interface PlayerStats {
+        statTitle: string;
+        statInfo: string;
+        statId: number;
+      }
+      
+      type PlayersState = PlayerStats[];
+
+    const rawTeamStats = useSelector((store: RootState) => store.myTeam)
     
-    const [ players, setPlayers ] = useState([])
+    const [ players, setPlayers ] = useState<PlayersState>([])
 
     useEffect(()=>{
         if(!rawTeamStats.isLoading){
-            setPlayers(rawTeamStats.players.map( player => ({
+            setPlayers(rawTeamStats.players.map( (player: Player) => ({
                 statTitle: player.name,
-                statInfo: player.position
-            })
-            ))
+                statInfo: player.position,
+                statId: player.id
+            })) as PlayersState)
             console.log(players)
         }
 
@@ -50,6 +61,7 @@ const TeamStats = ({team1Stat, statTitle, team2Stat}) => {
               <TeamStatsRow 
                     title='Stat3'
                     teamStats={[]}
+                    height='5rem'
                 />
           </section>
     );

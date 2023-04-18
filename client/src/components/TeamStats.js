@@ -15,7 +15,8 @@ const TeamStats = ({team1Stat, statTitle, team2Stat}) => {
         if(!rawTeamStats.isLoading){
             setPlayers(rawTeamStats.players.map( player => ({
                 statTitle: player.name,
-                statInfo: player.position
+                statInfo: player.position,
+                statId: player.id
             })
             ))
             console.log(players)

@@ -5,32 +5,42 @@ import allJobsSlice from './features/allJobs/allJobsSlice';
 import lightModeSlice from './features/lightMode/lightModeSlice';
 import myTeamSlice from './features/myTeam/myTeamSlice';
 
-interface RootState {
+import { Player } from './features/myTeam/myTeamSlice';
+
+export interface RootState {
   user: UserType;
   job: JobType;
   allJobs: AllJobsType;
   lightMode: LightModeType;
-  myTeam: MyTeamType;
+  myTeam: MyTeamType<Player>;
 }
 
 type UserType = {
-  // Define the type for the user slice here
+  isLoading: boolean;
+  isSidebarOpen: boolean;
+  user: {
+    name: string;
+    email: string;
+    id: string;
+  } | null;
 };
 
 type JobType = {
-  // Define the type for the job slice here
+  
 };
 
 type AllJobsType = {
   // Define the type for the allJobs slice here
 };
 
-type LightModeType = {
-  // Define the type for the lightMode slice here
-};
+type LightModeType = boolean | null
 
-type MyTeamType = {
-  // Define the type for the myTeam slice here
+type MyTeamType<Player> = {
+  isLoading: boolean;
+  // page: number;
+  team: string;
+  logo: string;
+  players: Player[];
 };
 
 

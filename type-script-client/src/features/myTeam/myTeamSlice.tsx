@@ -10,15 +10,24 @@ import { myTeamThunk, setTeamThunk } from './myTeamThunk';
 //   sortOptions: ['latest', 'oldest', 'a-z', 'z-a'],
 // };
 
-type myTeamState = {
+type myTeamState<Player> = {
   isLoading: boolean;
   // page: number;
   team: string;
   logo: string;
-  players: string | object;
+  players: Player[];
 };
 
-const initialState: myTeamState = {
+export type Player = {
+  id: number;
+  name: string;
+  age: number;
+  number: number;
+  position: string;
+  photo: string;
+}
+
+const initialState: myTeamState<Player> = {
   isLoading: true,
   // jobs: [],
   // totalJobs: 0,
@@ -28,7 +37,7 @@ const initialState: myTeamState = {
   // monthlyApplications: [],
   team: '',
   logo: '',
-  players:''
+  players: [],
 //   ...initialFiltersState,
 };
 
@@ -36,7 +45,7 @@ export const getMyTeam = createAsyncThunk( 'football/getTeam' , myTeamThunk);
 export const setTeam = createAsyncThunk('football/team', setTeamThunk);
 
 type handleChangePayloadProps = {
-  name: keyof myTeamState,
+  name: keyof myTeamState<Player>,
   value : any
 }
 

@@ -10,7 +10,7 @@ const TeamStatsRow = ({ title, height, teamStats }) => {
 
     let statsList = teamStats.map( element => {
         return (            
-            <div className='team-stats'>
+            <div className='team-stats' key={element.statId}>
                 <h4>{element.statTitle}</h4>
                 <h4>{element.statInfo}</h4>
             </div>
