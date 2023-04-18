@@ -10,8 +10,9 @@ const authRoutes = require('./routes/auth');
 const databaseConnect = require('./db/connect');
 const pageNotFound = require('./middleware/not_found');
 const errorHandlingMiddleware = require('./middleware/error_handling');
-require('dotenv').config() 
 const sendEmail = require('./controllers/email');
+const helmet = require('helmet');
+require('dotenv').config() 
 
 //middleware
 app.use(express.static(path.resolve(__dirname, './client/build')));
@@ -32,6 +33,8 @@ app.get('*', (req, res) => {
 app.use(pageNotFound);
 app.use(errorHandlingMiddleware);
 
+//security
+app.use(helmet());
 
 const start = async () => {
     try {
