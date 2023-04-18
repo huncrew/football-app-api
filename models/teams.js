@@ -11,7 +11,7 @@ const TeamSchema = new mongoose.Schema({
         ref: 'User',
         required: true,
         unique: true
-      },
+      },    
 })
 
 module.exports = mongoose.model('Teams', TeamSchema);
