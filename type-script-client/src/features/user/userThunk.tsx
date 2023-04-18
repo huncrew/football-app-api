@@ -15,7 +15,7 @@ export const loginUserThunk = async (url, user, thunkAPI) => {
   try {
     const resp = await customFetch.post(url, user);
     return resp.data;
-  } catch (error) {
+  } catch (error: any) {
     return thunkAPI.rejectWithValue(error.response.data.msg);
   }
 };

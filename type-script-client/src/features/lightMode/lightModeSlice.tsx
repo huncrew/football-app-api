@@ -3,7 +3,12 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const lightModeSlice = createSlice({
   name: 'lightMode',
-  initialState: JSON.parse(localStorage.getItem("UniqueIDlightMode")) != null ? JSON.parse(localStorage.getItem("UniqueIDlightMode")) : false,
+  
+  initialState: (() => {
+    const localStorageValue = localStorage.getItem("UniqueIDlightMode");
+    return localStorageValue !== null ? JSON.parse(localStorageValue) : false;
+  })(),
+
   reducers: {
     changeLightMode: (state) => !state
   }
