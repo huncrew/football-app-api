@@ -132,6 +132,7 @@
 import { FormRow, FormRowSelect } from '../../components';
 import Wrapper from '../../assets/wrappers/Job';
 import OngoingMatch from '../../components/OngoingMatch';
+import TeamStats from '../../components/TeamStats';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import {
@@ -143,6 +144,7 @@ import {
 import { useEffect } from 'react';
 
 import { getMyTeam } from '../../features/myTeam/myTeamSlice';
+
 const MyTeam = () => {
   const {
     isLoading,
@@ -167,87 +169,58 @@ const MyTeam = () => {
   }, [dispatch]);
 
   useEffect(()=>{
-    console.log(myTeam)
+    console.log(myTeam, 'lol')
   },[])
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
 
 
 
 
-    if (!area || !text) {
-      toast.error('Please fill out all fields');
-      return;
-    }
-    if (isEditing) {
-      dispatch(
-        editJob({
-          jobId: editJobId,
-          job: { area, text, jobLocation, jobType, status },
-        })
-      );
-      return;
-    }
-    dispatch(createJob({ area, text, user }));
-  };
+  //   if (!area || !text) {
+  //     toast.error('Please fill out all fields');
+  //     return;
+  //   }
+  //   if (isEditing) {
+  //     dispatch(
+  //       editJob({
+  //         jobId: editJobId,
+  //         job: { area, text, jobLocation, jobType, status },
+  //       })
+  //     );
+  //     return;
+  //   }
+  //   dispatch(createJob({ area, text, user }));
+  // };
 
-  const handleJobInput = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
-    dispatch(handleChange({ name, value }));
-    dispatch(createJob({ name, value }));
-  };
+  // const handleJobInput = (e) => {
+  //   const name = e.target.name;
+  //   const value = e.target.value;
+  //   dispatch(handleChange({ name, value }));
+  //   dispatch(createJob({ name, value }));
+  // };
 
   return (
     <>
+    {/* temporary inline styling... */}
+    <div style={{display: 'grid', justifyContent: 'center'}}>
+      {/* future fix to implement: converting the team logo back to original color on dark mode */}
+      <img src={myTeam.logo} />
     <h1>{myTeam.team}</h1>
-        <Wrapper>
-               {/* temporary inline styling on this section */}
-               
-               <h2 style={{textAlign: 'center'}}>Ongoing Match</h2>
-               <p></p>
-               <OngoingMatch team1='team1' score='2:1' team2='team2'/>
-      {/* <section className='form' style={{textAlign: 'center'}}>
-      <h3>team1 # - # team2</h3>
-        <hr style={{width: '50%'}}></hr>
-        <div className='form-center'>
-        <h4>x% - POSSESSION - x%</h4>
-        <h4>x% - SHOTS - x%</h4>
-        <h4>x% - SHOTS ON GOAL - x%</h4>
-        <h4>x% - YELLOW CARDS - x%</h4>
-        <h4>x% - RED CARDS - x%</h4>
-
-          <hr></hr>
-          <h3 >Goals</h3>
-          <hr style={{width: '50%'}}></hr>
-          <h4>Team | player | min'</h4>
-          <h4>Team | player | min'</h4>
-          <h4>Team | player | min'</h4>
-          <hr></hr>
-          <h3>Time</h3>
-          <hr style={{width: '50%'}}></hr>
-          <h4>current minute: X</h4>
-          <h4>extra time: X</h4>         
-        </div>
-      </section> */}
+    </div>
+    <Wrapper>
+      <h2>Ongoing Match</h2>
+      <OngoingMatch 
+        team1='team1' 
+        score='2:1' 
+        team2='team2'
+      />
     </Wrapper>
     <hr></hr>
     <Wrapper>
-      <section className='form'>
-        <h3>Team Stats</h3>
-        <div className='form-center'>
-        <h4>Lineup...?</h4>
-        <h4>Group scores...?</h4>
-        <h4>Total goals...?</h4>
-
-
-          <div className='btn-container'>
-         
-          </div>
-        </div>
-      </section>
-      
+      <h2>Team Stats</h2>
+      <TeamStats />
     </Wrapper>
     </>
   );

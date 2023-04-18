@@ -1,4 +1,4 @@
-import Wrapper from '../assets/wrappers/MyTeamSection';
+import Wrapper from '../assets/wrappers/MyTeamSectionOnGoingMatch';
 import OngoingMatchStatRow from './OngoingMatchStatRow';
 
 const OngoingMatch = (props) => {

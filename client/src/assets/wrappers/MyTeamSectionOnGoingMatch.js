@@ -1,15 +1,19 @@
 import styled from 'styled-components'
 
-const Wrapper = styled.div`
+const Wrapper = styled.section`
   overflow: hidden;
   width: 95%;
   margin: 0 auto 1rem auto;
 
-  border-radius: 0 0 0.3rem 0.3rem;
+  
   transition: all 0.3s;
 
   &: hover{
     
+  }
+
+  h2{
+    text-align: center;
   }
 
   .match-score{
@@ -49,6 +53,9 @@ const Wrapper = styled.div`
     background: var(--primary-100);
   }
   .match-stats{
+    border: 4px solid hsl(0,49%,30%);
+    border-top-width: 2px;
+    border-radius: 0 0 0.3rem 0.3rem;
     padding: 0.5rem;
     width: 100%;
     background: linear-gradient(90deg, 
