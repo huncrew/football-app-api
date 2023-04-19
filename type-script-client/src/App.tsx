@@ -14,22 +14,37 @@ import {
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
+import { RootState } from './store';
+
 function App() {
 
-  let lightMode = useSelector((store) => store.lightMode)
+  let lightMode = useSelector((store: RootState) => store.lightMode)
   const htmlElement = document.getElementsByTagName('html')
 
+  // useEffect(()=>{
+  //   if(JSON.parse(localStorage.getItem("UniqueIDlightMode")) == null){
+  //     localStorage.setItem("UniqueIDlightMode", JSON.stringify(false))
+  //   }
+  // },[])
+
+//   useEffect(()=>{
+
+//     htmlElement[0].style.filter = !lightMode ? 'invert(0.93) hue-rotate(200deg) saturate(80%) brightness(90%)' : 'none'
+  
+// },[lightMode])
+
+
   useEffect(()=>{
-    if(JSON.parse(localStorage.getItem("UniqueIDlightMode")) == null){
-      localStorage.setItem("UniqueIDlightMode", JSON.stringify(false))
-    }
+    localStorage.setItem("UniqueIDlightMode", JSON.stringify(false))
   },[])
-
+  
   useEffect(()=>{
-
-      htmlElement[0].style.filter = !lightMode ? 'invert(0.93) hue-rotate(200deg) saturate(80%) brightness(90%)' : 'none'
-    
+    const lightModeValue = localStorage.getItem("UniqueIDlightMode");
+    if (lightModeValue !== null) {
+      htmlElement[0].style.filter = !JSON.parse(lightModeValue) ? 'invert(0.93) hue-rotate(200deg) saturate(80%) brightness(90%)' : 'none'
+    }
   },[lightMode])
+
 
   return (
     <BrowserRouter>

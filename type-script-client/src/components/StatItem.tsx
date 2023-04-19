@@ -1,6 +1,17 @@
 import Wrapper from '../assets/wrappers/StatItem';
 
-const StatItem = ({ count, title, icon, color, bcg }) => {
+//review types later... set them up for now to be able to create a build and link BE and FE
+// remember to also review the list witht he map below
+
+type statItemProps = {
+  count: any;
+  title: string;
+  icon: any;
+  color: any;
+  bcg: any
+}
+
+const StatItem = ({ count, title, icon, color, bcg }: statItemProps) => {
   return (
     <Wrapper color={color} bcg={bcg}>
       <header>

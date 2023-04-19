@@ -6,6 +6,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import { loginUser, registerUser } from '../features/user/userSlice';
 import { useNavigate } from 'react-router-dom';
 
+import { ChangeEvent } from 'react';
+import { FocusEvent } from 'react';
+
+
+import { RootState } from '../store';
+import { AnyAction } from '@reduxjs/toolkit';
+import { ThunkDispatch } from '@reduxjs/toolkit';
+import { FormEvent } from 'react';
+import { KeyboardEvent } from 'react';
+
 const initialState = {
   name: '',
   email: '',
@@ -14,42 +24,50 @@ const initialState = {
   isMember: true,
 };
 
+interface Selects {
+  name: boolean;
+  email: boolean;
+  password: boolean;
+  phoneNumber: boolean;
+  [key: string]: boolean;
+}
+
 function Register() {
   const [values, setValues] = useState(initialState);
-  const { user, isLoading } = useSelector((store) => store.user);
-  const [selects, setSelects] = useState({
+  const { user, isLoading } = useSelector((store: RootState) => store.user);
+  const [selects, setSelects] = useState<Selects>({
     name: false,
     email: false,
     password: false,
     phoneNumber: false,
   })
 
-  const handleFocus = (e) => {
+  const handleFocus = (e: FocusEvent<HTMLInputElement>) => {
     const title = e.target.name == 'Telephone Number' ? 'phoneNumber' : e.target.name
     const value = !selects[title]
-    if(!values[title]){
+    if(!values[title as keyof typeof values]){
       setSelects({ ...selects, [title]: value });
     }
   };
 
-  const handleBlur = (e) => {
+  const handleBlur = (e: FocusEvent<HTMLInputElement>) => {
     const title = e.target.name == 'Telephone Number' ? 'phoneNumber' : e.target.name
     const value = !selects[title]
-    if(!values[title]){
+    if(!values[title as keyof typeof values]){
       setSelects({ ...selects, [title]: value });
     }
   };
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<ThunkDispatch<RootState, null, AnyAction>>();
   const navigate = useNavigate();
 
-  const handleChange = (e) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const name = e.target.name == 'Telephone Number' ? 'phoneNumber' : e.target.name
     const value = e.target.value;
 
     setValues({ ...values, [name]: value });
   };
-  const onSubmit = (e) => {
+  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const { name, email, password, phoneNumber, isMember } = values;
     if (!email || !password || !phoneNumber || (!isMember && !name)) {
@@ -116,7 +134,7 @@ function Register() {
           type='tel'
           name='Telephone Number'
           value={values.phoneNumber}
-          handleOnKeyDown={(event) => {
+          handleOnKeyDown={(event: React.KeyboardEvent<HTMLInputElement>) => {
             if (!/^[0-9+]+$/.test(event.key) 
             && event.key !== 'Backspace' 
             && event.key !== 'Enter' 

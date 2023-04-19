@@ -1,4 +1,10 @@
-const OngoingMatchStatRow = ({team1Stat, statTitle, team2Stat}) => {
+type OngoingMatchStatRowProps = {
+  team1Stat: string;
+  statTitle: string;
+  team2Stat: string
+}
+
+const OngoingMatchStatRow = ({team1Stat, statTitle, team2Stat}: OngoingMatchStatRowProps) => {
   return (
         <div className="OngoingMatchStatRow">
             <h4>{team1Stat}</h4>

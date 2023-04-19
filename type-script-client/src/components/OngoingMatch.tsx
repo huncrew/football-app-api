@@ -1,14 +1,20 @@
 import Wrapper from '../assets/wrappers/MyTeamSectionOnGoingMatch';
 import OngoingMatchStatRow from './OngoingMatchStatRow';
 
-const OngoingMatch = (props) => {
+type OngoingMatchProps = {
+  team1: string;
+  score: string;
+  team2: string;
+}
+
+const OngoingMatch = ({team1, score, team2}: OngoingMatchProps) => {
   return (
     <Wrapper>
         
             <h3 className='match-score'>
-                <div>{props.team1}</div>
-                <div>{props.score}</div> 
-                <div>{props.team2}</div>
+                <div>{team1}</div>
+                <div>{score}</div> 
+                <div>{team2}</div>
             </h3>
 
             <div className='match-stats'>

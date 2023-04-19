@@ -3,8 +3,10 @@ import Logo from './Logo';
 import Wrapper from '../assets/wrappers/BigSidebar';
 import { useSelector } from 'react-redux';
 
+import { RootState } from '../store';
+
 const BigSidebar = () => {
-  const { isSidebarOpen } = useSelector((store) => store.user);
+  const { isSidebarOpen } = useSelector((store: RootState) => store.user);
 
   return (
     <Wrapper>
@@ -19,7 +21,8 @@ const BigSidebar = () => {
           <header>
             <Logo />
           </header>
-          <NavLinks />
+          {/* the line below is down for further review */}
+          <NavLinks toggleSidebar={isSidebarOpen}/>
         </div>
       </div>
     </Wrapper>

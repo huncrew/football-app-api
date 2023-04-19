@@ -36,7 +36,7 @@ const Job = ({
   }
   const handleClick = e =>{
     setStatsExpand(prevState => !prevState)
-    console.log(jobState)
+    console.log(team)
   }
   
 
@@ -45,7 +45,7 @@ const Job = ({
       <header>
         
         {/* THIS IS AN ICON SITTING BESIDE THE NAME, UPON HAVING THE TEAMS, EACH FLAG COULD BE DISPLAYED HERE */}
-        <div className='main-icon'>{area}</div>
+        <div className='main-icon'></div>
         <div className='info'>
           <h5 className='team-title'>{team}</h5>
           <button className= 'btn stats-btn'

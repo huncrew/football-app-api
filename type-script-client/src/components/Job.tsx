@@ -4,39 +4,51 @@ import Wrapper from '../assets/wrappers/Job';
 import { useDispatch } from 'react-redux';
 import JobInfo from './JobInfo';
 import moment from 'moment';
-import { createJob, deleteJob, setEditJob } from '../features/job/jobSlice';
+// import { createJob, deleteJob, setEditJob } from '../features/job/jobSlice';
 
-import { setTeam } from '../features/myTeam/myTeamSlice';
+import { setTeam, myTeamState, Player } from '../features/myTeam/myTeamSlice';
 
 import { useRef } from 'react';
 import { toast } from 'react-toastify';
 import { useState } from 'react';
 import Stat from './Stat';
-import { handleChange } from '../features/job/jobSlice';
+// import { handleChange } from '../features/job/jobSlice';
 
 import { useSelector } from 'react-redux';
 
+import { RootState } from '../store';
+import { FormEvent } from 'react';
+import { AnyAction } from 'redux';
+import { ThunkDispatch } from '@reduxjs/toolkit';
+
+type JobProperties = {
+  team: string
+}
+
 const Job = ({
-  _id,
-  area,
+  // _id,
+  // area,
   team
-}) => {
+}: JobProperties) => {
 
-  let jobState = useSelector((state) => state.myTeam)
+  let jobState = useSelector((state : RootState) => state.myTeam)
   const [statsExpand, setStatsExpand] = useState(false)
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<ThunkDispatch<RootState, null, AnyAction>>();
 
-  const onSubmit = (e) =>{
+  const onSubmit = (e : FormEvent<HTMLFormElement>) =>{
     e.preventDefault()
     // toast.success(`${team} set as 'My Team'`)
 
     // dispatch(handleChange(team));
-    dispatch(setTeam({team: team.toLowerCase()}));
+
+    const payload: {team: string} = {team: team}
+    const action = setTeam(payload)
+    dispatch(action);
  
   }
-  const handleClick = e =>{
+  const handleClick = () =>{
     setStatsExpand(prevState => !prevState)
-    console.log(jobState)
+    
   }
   
 
@@ -44,8 +56,8 @@ const Job = ({
     <Wrapper>
       <header>
         
-        {/* THIS IS AN ICON SITTING BESIDE THE NAME, UPON HAVING THE TEAMS, EACH FLAG COULD BE DISPLAYED HERE */}
-        <div className='main-icon'>{area}</div>
+        {/* THIS IS AN ICON SITTING BESIDE THE NAME, UPON HAVING THE TEAMS, EACH LOGO COULD BE DISPLAYED HERE */}
+        <div className='main-icon'></div>
         <div className='info'>
           <h5 className='team-title'>{team}</h5>
           <button className= 'btn stats-btn'

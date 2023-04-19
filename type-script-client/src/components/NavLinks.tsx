@@ -1,7 +1,14 @@
 import { NavLink } from 'react-router-dom';
 import links from '../utils/links';
 
-const NavLinks = ({ toggleSidebar }) => {
+// set up types for build now... review later...
+
+type NavLinksProps = {
+  toggleSidebar? : any
+}
+
+
+const NavLinks = ({ toggleSidebar }: NavLinksProps) => {
   return (
     <div className='nav-links'>
       {links.map((link) => {

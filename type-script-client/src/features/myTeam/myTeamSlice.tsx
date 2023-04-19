@@ -10,7 +10,7 @@ import { myTeamThunk, setTeamThunk } from './myTeamThunk';
 //   sortOptions: ['latest', 'oldest', 'a-z', 'z-a'],
 // };
 
-type myTeamState<Player> = {
+export type myTeamState<Player> = {
   isLoading: boolean;
   // page: number;
   team: string;

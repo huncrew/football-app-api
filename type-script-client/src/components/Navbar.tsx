@@ -8,16 +8,20 @@ import { changeLightMode } from '../features/lightMode/lightModeSlice';
 
 import { getMyTeam } from '../features/myTeam/myTeamSlice';
 
+import { RootState } from '../store';
+import { AnyAction } from '@reduxjs/toolkit';
+import { ThunkDispatch } from '@reduxjs/toolkit';
+
 const Navbar = () => {
   const [showLogout, setShowLogout] = useState(false);
-  const { user } = useSelector((store) => store.user);
+  const { user } = useSelector((store: RootState) => store.user);
 
-  const team = useSelector( (store) => store.job)
-  const idk = useSelector( (store) => store.allJobs)
-  const myTeam = useSelector( (store) => store.myTeam)
-  const dispatch = useDispatch();
+  const team = useSelector( (store: RootState) => store.job)
+  const idk = useSelector( (store: RootState) => store.allJobs)
+  const myTeam = useSelector( (store: RootState) => store.myTeam)
+  const dispatch = useDispatch<ThunkDispatch<RootState, null, AnyAction>>();
 
-  const lightMode = useSelector((store) => store.lightMode)
+  const lightMode = useSelector((store: RootState) => store.lightMode)
  
 
   const toggle = () => {
@@ -28,10 +32,10 @@ const Navbar = () => {
     // console.log( "allJobs:\n", idk)
     // console.log( "user:\n", user)
     // console.log('myTeam:\n', myTeam)
-    dispatch(getMyTeam())
+    dispatch(getMyTeam(null))
   },[])
 
-  const handleClick = (e) =>{
+  const handleClick = () =>{
    dispatch(changeLightMode())
    // we need the ! before light mode as the light mode is not getting updated until the next rerende
    // therefore, if the initial value is false, upon press, the value will remain false and only change on a subsequent click

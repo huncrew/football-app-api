@@ -71,7 +71,7 @@ const JobsContainer = () => {
           />;
         })}
       </div>
-      {numOfPages > 1 && <PageBtnContainer />}
+      {/* {numOfPages > 1 && <PageBtnContainer />} */}
     </Wrapper>
   );
 };

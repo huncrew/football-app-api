@@ -1,8 +1,8 @@
 import customFetch, { checkForUnauthorizedResponse } from '../../utils/axios';
 
+// I have left the arguments here to be explicitly set to any type... FOR NOW
 
-
-export const myTeamThunk = async (_, thunkAPI) => {
+export const myTeamThunk = async (_: any, thunkAPI: any) => {
 //   const { page, search, searchStatus, searchType, sort } =
 //     thunkAPI.getState().allJobs;
 
@@ -14,7 +14,7 @@ export const myTeamThunk = async (_, thunkAPI) => {
   }
 };
 
-export const setTeamThunk = async (team, thunkAPI) => {
+export const setTeamThunk = async (team: any, thunkAPI: any) => {
   try {
     const resp = await customFetch.post('/football/team', team);
     // thunkAPI.dispatch(clearValues());

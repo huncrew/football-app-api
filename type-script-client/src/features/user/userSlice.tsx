@@ -12,6 +12,19 @@ import {
   clearStoreThunk,
 } from './userThunk';
 
+export type User = {
+  email: string;
+  name: string;
+  token: string;
+}
+
+export type userRootState = {
+  isLoading: boolean;
+  isSidebarOpen: boolean;
+  user: User | null;
+};
+
+
 const initialState = {
   isLoading: false,
   isSidebarOpen: false,
@@ -20,7 +33,7 @@ const initialState = {
 
 export const registerUser = createAsyncThunk(
   'user/registerUser',
-  async (user, thunkAPI) => {
+  async (user: { name: string, email: string, password: string, phoneNumber: string }, thunkAPI) => {
     const abc = registerUserThunk('/auth/register', user, thunkAPI);
     console.log('hello abc', abc)
     return abc
@@ -29,14 +42,16 @@ export const registerUser = createAsyncThunk(
 
 export const loginUser = createAsyncThunk(
   'user/loginUser',
-  async (user, thunkAPI) => {
+  async (user: { email: string, password: string, phoneNumber: string }, thunkAPI) => {
     return loginUserThunk('/auth/login', user, thunkAPI);
   }
 );
 
 export const updateUser = createAsyncThunk(
   'user/updateUser',
-  async (user, thunkAPI) => {
+
+  //add a proppert type bellow when build is finished
+  async (user: any, thunkAPI) => {
     return updateUserThunk('/auth/updateUser', user, thunkAPI);
   }
 );
@@ -83,6 +98,7 @@ const userSlice = createSlice({
         state.user = user;
         addUserToLocalStorage(user)
         toast.success(`Welcome Back ${user.name}`)
+
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.isLoading = false;
