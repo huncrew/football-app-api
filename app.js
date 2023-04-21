@@ -15,7 +15,7 @@ const helmet = require('helmet');
 require('dotenv').config() 
 
 //middleware
-app.use(express.static(path.resolve(__dirname, './client/build')));
+app.use(express.static(path.resolve(__dirname, './type-script-client/dist')));
 app.use(express.urlencoded({ extended: false }));
 app.use(jsonParser);
 
@@ -26,7 +26,7 @@ app.use('/api/v1/football', principleRoutes);
 app.get('/send', sendEmail);
 
 app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, './client/public', 'index.html'));
+    res.sendFile(path.resolve(__dirname, './type-script-client', 'index.html'));
 });
 
 //middleware errors

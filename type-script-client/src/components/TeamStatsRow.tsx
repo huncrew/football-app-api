@@ -1,16 +1,26 @@
 import { useState } from "react";
 import Wrapper from '../assets/wrappers/MyTeamSectionTeamStatsRow';
-const TeamStatsRow = ({ title, height, teamStats }) => {
+
+type TeamStatsRowProps<T> = {
+    title: string,
+    height: string,
+    teamStats: T[],
+}
+
+// implement a full type parameter once we know all the potential stats data that we might receive
+type potentialStat = any
+
+const TeamStatsRow = ({ title, height, teamStats }: TeamStatsRowProps<potentialStat>) => {
 
     const [open, setOpen] = useState(false)
 
-    const handleClick = e =>{
+    const handleClick = () =>{
         setOpen(prevState => !prevState)
     }
 
     let statsList = teamStats.map( element => {
         return (            
-            <div className='team-stats' key={element.statId}>
+            <div className='team-stats'>
                 <h4>{element.statTitle}</h4>
                 <h4>{element.statInfo}</h4>
             </div>

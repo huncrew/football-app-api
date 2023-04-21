@@ -135,15 +135,20 @@ import OngoingMatch from '../../components/OngoingMatch';
 import TeamStats from '../../components/TeamStats';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
-import {
-  handleChange,
-  clearValues,
-  createJob,
-  editJob,
-} from '../../features/job/jobSlice';
+// import {
+//   handleChange,
+//   clearValues,
+//   createJob,
+//   editJob,
+// } from '../../features/job/jobSlice';
 import { useEffect } from 'react';
 
 import { getMyTeam } from '../../features/myTeam/myTeamSlice';
+
+import { RootState } from '../../store';
+import { ThunkDispatch } from '@reduxjs/toolkit';
+import { AnyAction } from '@reduxjs/toolkit';
+
 
 const MyTeam = () => {
   // const {
@@ -157,15 +162,15 @@ const MyTeam = () => {
   //   statusOptions,
   //   isEditing,
   //   editJobId,
-  // } = useSelector((store) => store.job);
-  const { user } = useSelector((store) => store.user);
-  const dispatch = useDispatch();
+  // } = useSelector((store: RootState) => store.job);
+  const { user } = useSelector((store: RootState) => store.user);
+  const dispatch = useDispatch<ThunkDispatch<RootState, null, AnyAction>>();
 
 
-  const myTeam = useSelector((store) => store.myTeam)
+  const myTeam = useSelector((store: RootState) => store.myTeam)
 
   useEffect(() => {
-    dispatch(getMyTeam());
+    dispatch(getMyTeam(null));
   }, [dispatch]);
 
   useEffect(()=>{

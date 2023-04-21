@@ -20,7 +20,7 @@ const initialState = {
   // monthlyApplications: [],
   team: '',
   logo: '',
-  players:''
+  players:[],
 //   ...initialFiltersState,
 };
 
